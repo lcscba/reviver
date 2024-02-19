@@ -4,16 +4,17 @@
 
 {% block conteudo%}
 
+<br>
+
 <h1>CRIAR SUA LEMBRANÇA</h1>
 
     
-    <div class ="container border ">
       <form action="{% url 'publicate_page' %}"method = "POST" enctype="multipart/form-data"> {%csrf_token%}
         <div class="mb-3 container bg-light form-control">
-            <form class="mb-3">
+            <div class="mb-3">
                 <label for="imagem" class="form-label">Inserir Imagem</label>
                 <input class="form-control form-control-sm" name="imagem" id="formFileSm" type="file">
-            </form>
+            </div>
             <label for="tit" class="form-label">Titulo</label>
             <input type="text" class="form-control" name="tit">
       
@@ -23,9 +24,9 @@
             <label for="content" class="form-label">Descrição</label>
             <textarea class="form-control" rows="10" name="content"></textarea>
         </div>
-        <input class='btn btn-primary' type="submit"value='enviar'>
-          </form>
-    </div>
+        <input class='btn btn-primary' type="submit" value='Publicar'>
+      </form>
+
     
   
 {% endblock conteudo%}
