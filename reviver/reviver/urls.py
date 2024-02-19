@@ -10,7 +10,10 @@ urlpatterns = [
     path('publicate/', views.publicate_page, name='publicate_page'),
     path('home/', views.index),
     path('post/<int:id>', views.post_page),
-    path('', views.index)
+    path('', views.index),
+    path('login/', views.login_view),
+    path('logout/', views.logout_view),
+
 
 ]
 
