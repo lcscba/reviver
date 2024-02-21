@@ -94,7 +94,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/feed')
+            return HttpResponseRedirect('/publicate')
         else:
             return render(request, 'login.html', {
                 'incorrect_login': True
