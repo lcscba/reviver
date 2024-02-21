@@ -8,7 +8,15 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    return render(request, 'home.html')
+    if  request.user.is_authenticated:
+        username= request.user.username
+        
+        return render(request, 'home.html', {'username': username})
+    
+
+    else :
+        return render(request, 'home.html', {'username': ''})
+    
 
 @login_required(login_url='/login') 
 def publicate_page(request):
@@ -40,8 +48,10 @@ def publicate_page(request):
 
 def feed_page(request):
     context = {
-        "posts": Publicacao.objects.all()[:: -1]
+        "posts": Publicacao.objects.all()[:: -1],
+        "username" : request.user.username
     }
+    
     return render(request, 'feed.html', context)
     
 def post_page(request, id):
