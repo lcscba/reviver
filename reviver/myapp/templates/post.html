@@ -27,11 +27,12 @@
               <h6 style="font-family: 'arial'; text-align:justify;" class="m-3 card-text">{{post.content}}</h6>
                     <div>                                    
                         <div class="row m-3 ">
-                            {% if len.comentarios == 1%}
-                            <h4 style="background-color: rgba(173, 222, 183, 0.5);">Comentário</h4>
-                            {% elif len.comentarios > 1%}
-                            <h4 style="background-color: rgba(173, 222, 183, 0.5);">Comentários</h4>
-                            {% else %}
+                            {% if comentarios %}
+                                {% if comentarios|length == 1 %}
+                                    <h4 style="background-color: rgba(173, 222, 183, 0.5);">Comentário</h4>
+                                {% else %}
+                                    <h4 style="background-color: rgba(173, 222, 183, 0.5);">Comentários</h4>
+                                {% endif %}
                             {% endif %}
                             {% for coment in comentarios %}
                             <div class="row align-items-center p-3">
