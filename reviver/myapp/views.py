@@ -20,8 +20,9 @@ def index(request):
 
 @login_required(login_url='/login') 
 def publicate_page(request):
+    username= request.user.username
     if request.method == 'GET':
-        return render(request, 'publicate.html')
+        return render(request, 'publicate.html',{'username':username})
     elif request.method == 'POST':
         author = request.POST.get('author')
         tit = request.POST.get('tit')
@@ -57,8 +58,10 @@ def feed_page(request):
 def post_page(request, id):
     post = Publicacao.objects.get(id=id)
     comentarios = Comentario.objects.filter(publicacao=post)
+    username= request.user.username
+    
     if request.method == 'GET':
-        return render(request, 'post.html', {'post': post, 'comentarios':comentarios})
+        return render(request, 'post.html', {'post': post, 'comentarios':comentarios,'username':username})
     elif request.method == 'POST':
         author = request.POST.get('author1')
         content = request.POST.get('content1')
@@ -76,7 +79,8 @@ def post_page(request, id):
 def publ_coment_page(request, publicacao_id):
     # Recupere os comentários associados a uma publicação específica
     comentarios = Comentario.objects.filter(publicacao_id=publicacao_id)
-    return render(request, 'post.html', {'comentarios': comentarios})
+    username : request.user.username
+    return render(request, 'post.html', {'comentarios': comentarios,'username':username})
 
 
 def login_view(request):
