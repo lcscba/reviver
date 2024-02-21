@@ -25,9 +25,9 @@
           <form>
               <a class="btn btn-sm btn-outline-light me-2" type="button" href='/publicate'>CRIAR LEMBRANÇAS</a>
               <a class="btn btn-sm btn-outline-light" type="button" href='/feed'>VER LEMBRANÇAS</a>
-              <span class="m-5 me-5 text-warning fw-bold fst-italic border border-warning rounded text-center align-middle p-1">
-                {% block username %}  {% endblock username %}
-                </span>        
+              {% block username %}
+              
+              {% endblock username %}        
               <a class="btn btn-sm btn-light text-success" href='/logout'>Sair</a>
               
           </form>

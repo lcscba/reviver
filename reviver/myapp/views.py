@@ -10,19 +10,16 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     if  request.user.is_authenticated:
         username= request.user.username
-        
-        return render(request, 'home.html', {'username': username})
-    
-
+        return render(request, 'home.html', {'username': username, 'authenticated': True})
     else :
-        return render(request, 'home.html', {'username': ''})
+        return render(request, 'home.html', {'username': None, 'authenticated': False})
     
 
 @login_required(login_url='/login') 
 def publicate_page(request):
     username= request.user.username
     if request.method == 'GET':
-        return render(request, 'publicate.html',{'username':username})
+        return render(request, 'publicate.html',{'username':username, 'authenticated': True })
     elif request.method == 'POST':
         author = request.POST.get('author')
         tit = request.POST.get('tit')
@@ -50,7 +47,8 @@ def publicate_page(request):
 def feed_page(request):
     context = {
         "posts": Publicacao.objects.all()[:: -1],
-        "username" : request.user.username
+        "username" : request.user.username,
+        'authenticated': True
     }
     
     return render(request, 'feed.html', context)
@@ -61,7 +59,7 @@ def post_page(request, id):
     username= request.user.username
     
     if request.method == 'GET':
-        return render(request, 'post.html', {'post': post, 'comentarios':comentarios,'username':username})
+        return render(request, 'post.html', {'post': post, 'comentarios':comentarios,'username':username, 'authenticated': True})
     elif request.method == 'POST':
         author = request.POST.get('author1')
         content = request.POST.get('content1')

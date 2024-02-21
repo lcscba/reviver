@@ -1,7 +1,13 @@
 {% extends "base.html"%}
 {%  load static %}
 {% block title%} Feed {%endblock%}
-{% block username %} {{username}} {% endblock username %}
+{% block username %} 
+  {% if authenticated %}
+  <span class="m-5 me-5 text-warning fw-bold fst-italic border border-warning rounded text-center align-middle p-1">
+    {{username}}          
+  </span>
+  {% endif %}
+{% endblock username %}
 {% block conteudo%}
 
 <hr style="border-style: dashed; color: green; border-width: 2px;">

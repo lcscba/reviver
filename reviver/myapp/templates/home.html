@@ -1,6 +1,12 @@
 {% extends "base.html"%}
 {% block title%} INICIO {%endblock%}
-{% block username %} {{username}} {% endblock username %}
+{% block username %} 
+  {% if authenticated %}
+  <span class="m-5 me-5 text-warning fw-bold fst-italic border border-warning rounded text-center align-middle p-1">
+    {{username}}          
+  </span>
+  {% endif %}
+{% endblock username %}
 {% block conteudo%}
 {% load static %}
 
