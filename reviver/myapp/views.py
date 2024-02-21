@@ -46,22 +46,19 @@ def feed_page(request):
     
 def post_page(request, id):
     post = Publicacao.objects.get(id=id)
-    return render(request, 'post.html', {'post': post})
-
-def coment_page(request, id):
+    comentarios = Comentario.objects.filter(publicacao=post)
     if request.method == 'GET':
-        return render(request, 'post.html')
+        return render(request, 'post.html', {'post': post, 'comentarios':comentarios})
     elif request.method == 'POST':
         author = request.POST.get('author1')
-        publicacao_id = id
         content = request.POST.get('content1')
         comentario = Comentario()
-        comentario.id_post = publicacao_id
+        comentario.publicacao = post
         comentario.author = author
         comentario.date = datetime.today()
         comentario.content = content
         comentario.save()
-        return HttpResponseRedirect('/post/<int:id>')
+        return render(request, 'post.html', {'post': post, 'comentarios':comentarios})
     else:
         return HttpResponseBadRequest()
     

@@ -23,19 +23,26 @@
             </div>
             <div class="card-body">
               <h2 class='text-success text-uppercase text-center m-auto col-11'> <strong>{{post.tit}}</strong> </h2>
-              <h5 class="card-title text-uppercase">{{post.author}} - {{post.date}}</h5>
+              <h4 class="card-title text-uppercase">{{post.author}} - {{post.date}}</h4>
               <h6 style="font-family: 'arial'; text-align:justify;" class="m-3 card-text">{{post.content}}</h6>
-                    <div class='container'>
-                                    
-                        <div class="row bg-light m-3 ">
+                    <div>                                    
+                        <div class="row m-3 ">
+                            {% if len.comentarios == 1%}
+                            <h4 style="background-color: rgba(173, 222, 183, 0.5);">Comentário</h4>
+                            {% elif len.comentarios > 1%}
+                            <h4 style="background-color: rgba(173, 222, 183, 0.5);">Comentários</h4>
+                            {% else %}
+                            {% endif %}
                             {% for coment in comentarios %}
-                            <div class="row align-items-center border border-success p-3">
-                                <div class="col text-uppercase">                    
+                            <div class="row align-items-center p-3">
+                                <hr>
+                                <div class="col text-uppercase fw-bold">                    
                                         {{coment.author}}                
                                 </div>
                                 <div class="col-auto">
                                     {{coment.date}}
                                 </div>
+                                
                             </div>
                             <div class="row mt-3" style="text-align: justify;">
                                 <div class="col">
@@ -51,7 +58,7 @@
                     </h5>
                         <div id="expansiveText" class="collapse expansive-box">
                             <div class="card-body">
-                                <form>
+                                <form method='POST'> {% csrf_token %}
                                     <div class="form-group">
                                         <div class="mb-3 container border-warning bg.transparent form-control">
                                             <label for="author1" class="form-label">Autor</label>

@@ -12,7 +12,7 @@ class Publicacao(models.Model):
     
 class Comentario(models.Model):
     id = models.AutoField(primary_key=True)   
-    publicacao_id = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
+    publicacao = models.ForeignKey(Publicacao, on_delete=models.CASCADE)
     author = models.CharField(max_length=200)
     date = models.DateTimeField()
     content = models.CharField(max_length=200)
