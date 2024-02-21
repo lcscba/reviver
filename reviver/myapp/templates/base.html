@@ -25,23 +25,16 @@
           <form>
               <a class="btn btn-sm btn-outline-light me-2" type="button" href='/publicate'>CRIAR LEMBRANÇAS</a>
               <a class="btn btn-sm btn-outline-light" type="button" href='/feed'>VER LEMBRANÇAS</a>
+              <span class="navbar-text me-3">
+                {% block username %} {% endblock username %}
+                </span>        
+              <a class="btn btn-sm btn-light" href='/logout'>Sign Out</a>
+              
           </form>
         
     </div>
     </nav>
 
-    <div style="margin-top:1.5cm ; "class="fixed" >
-      <div class="row">
-        <div class="col">
-          
-        </div>
-        <div class="col-auto">
-          <p class="text-end border border-success me-2  " >{% block username %}username{% endblock username %}
-          
-            <a class="btn btn-sm btn-light" href="/logout">Sign Out</a>
-            </p>
-        </div>
-      </div>
     
     
 

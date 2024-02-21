@@ -13,77 +13,71 @@
 
     <main class="container p-3">
 
-        <div class="row bg-light m-3 border border-success p-3">
-            <div>
-                    {% if post.imagem %}
-                        <img src=" {{post.imagem.url}}" alt="Imagem da Publicação">
-                    {% else %}
-                        <p>Nenhuma imagem disponível para esta publicação.</p>
-                    {% endif %}
+        <div class="card">
+            <div class="card-header">
+                {% if post.imagem %}
+                    <img src=" {{post.imagem.url}}" class="card-img-top img-fluid" alt="Imagem da Publicação" style='width:1300px; height: 600px;'>
+                {% else %}
+                    <p>Nenhuma imagem disponível para esta publicação.</p>
+                {% endif %}
             </div>
-            <div class="row align-items-center">
-                <div class="col text-uppercase">
-                    <strong>{{post.author}}</strong>
-                </div>
-                <div class="col-auto">
-                    {{post.date}}
-                </div>
+            <div class="card-body">
+              <h5 class="card-title text-uppercase">{{post.author}} - {{post.date}}</h5>
+              <h6 style="font-family: 'arial'; text-align:justify;" class="m-3 card-text">{{post.content}}</h6>
+                    <div class='container'>
+                                    
+                        <div class="row bg-light m-3 ">
+                            {% for coment in comentarios %}
+                            <div class="row align-items-center border border-success p-3">
+                                <div class="col text-uppercase">                    
+                                        {{coment.author}}                
+                                </div>
+                                <div class="col-auto">
+                                    {{coment.date}}
+                                </div>
+                            </div>
+                            <div class="row mt-3" style="text-align: justify;">
+                                <div class="col">
+                                    {{coment.content}}
+                                </div>
+                            </div>
+                            {% endfor %}
+                    </div>                               
+                    <h5 class="mb-0">
+                            <button class="btn btn-primary" data-toggle="collapse" data-target="#expansiveText" aria-expanded="true" aria-controls="expansiveText">
+                                Comentar
+                            </button>
+                    </h5>
+                        <div id="expansiveText" class="collapse expansive-box">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                        <div class="mb-3 container border-warning bg.transparent form-control">
+                                            <label for="author1" class="form-label">Autor</label>
+                                            <input type="text" class="form-control border-success" name="author1">
+                                    
+                                            <label for="content1" class="form-label">Comentário</label>
+                                            <textarea class="form-control border-success" rows="4" name="content1"></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">Enviar</button>
+                                </form>
+                            </div>
+                        </div>  
+                                    
+                    <!-- Adicione o link para o JavaScript do Bootstrap -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>      
             </div>
-            <div class="row mt-3" style="text-align: justify;">
-                <div class="col">
-                    {{post.content}}
-                </div>
             </div>
+          </div>
+
+
+
 
             
-            <div class="row bg-light m-3 ">
-                {% for coment in comentarios %}
-                <div class="row align-items-center border border-success p-3">
-                    <div class="col text-uppercase">                    
-                            {{coment.author}}                
-                    </div>
-                    <div class="col-auto">
-                        {{coment.date}}
-                    </div>
-                </div>
-                <div class="row mt-3" style="text-align: justify;">
-                    <div class="col">
-                        {{coment.content}}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-                                   
-                <h5 class="mb-0">
-                          <button class="btn btn-sm btn-info" data-toggle="collapse" data-target="#expansiveText" aria-expanded="true" aria-controls="expansiveText">
-                            Comentar
-                          </button>
-                </h5>
-                      <div id="expansiveText" class="collapse expansive-box">
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <div class="mb-3 container border-warning bg.transparent form-control">
-                                        <label for="author1" class="form-label">Autor</label>
-                                        <input type="text" class="form-control border-success" name="author1">
-                                   
-                                        <label for="content1" class="form-label">Comentário</label>
-                                        <textarea class="form-control border-success" rows="4" name="content1"></textarea>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-sm btn-outline-primary">Enviar</button>
-                            </form>
-                        </div>
-                      </div>  
-                                
-                  <!-- Adicione o link para o JavaScript do Bootstrap -->
-                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-                  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-                
-
-                
-        </div>
+            
 
     </main>
 

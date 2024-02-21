@@ -1,7 +1,7 @@
 {% extends "base.html"%}
 {%  load static %}
 {% block title%} Feed {%endblock%}
-
+{% block username %} {{username}} {% endblock username %}
 {% block conteudo%}
 
 <hr style="border-style: dashed; color: green; border-width: 2px;">
@@ -11,33 +11,26 @@
 </div>
 <hr style="border-style: dashed; color: green; border-width: 2px;">
 
-    <main class="container p-3">
-        {% for post in posts%}
-        <div class="row bg-light m-3 border border-success p-3 col-5">
-            
-            <div class='container bg-white'>
-                <a class='btn text-uppercase col-12 align-items-center' href="/post/{{post.id}}">
-                <strong>{{post.tit}}</strong>
-                </a>
-            </div>
-            <div class="row align-items-center">
-                <div class="col text-uppercase">                    
-                        {{post.author}}                
-                </div>
-                <div class="col-auto">
-                    {{post.date}}
+<main class="p-3">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-sm-4">
+            <div class="card mb-3 shadow">
+                <img src="{{ post.imagem.url }}" class="shadow card-img-top mx-auto d-block" alt="Imagem da Publicação" style="width: 402px; height: 260px;">
+
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">{{ post.tit }}</h5>
+                    <p class="card-text">{{ post.content|truncatechars:70}}</p>
+                    <p class="card-text text-uppercase"> {{ post.author }} {{ post.date }}</p>
+                    <a href="/post/{{ post.id }}" class="btn btn-primary">Ver</a>
                 </div>
             </div>
-            <div class="row mt-3" style="text-align: justify;">
-                <div class="col">
-                    {{post.content}}
-                </div>
-            </div>
-           
         </div>
-        
-    {%endfor%}
-    </main>
+        {% endfor %}
+    </div>
+    
+
+</main>
 
 {% endblock %}
 
